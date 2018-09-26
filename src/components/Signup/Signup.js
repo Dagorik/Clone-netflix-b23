@@ -43,7 +43,6 @@ class Signup extends Component {
     onFormSubmit = (event,signup) => {
         event.preventDefault();
         console.log('Ya le puche al boton');
-        console.log(this.state);
         signup({
             variables:{
                 name:this.state.name,
@@ -52,8 +51,15 @@ class Signup extends Component {
                 password:this.state.password,
                 birth_date:this.state.birth_date
             }
+        }).then(response => {
+            console.log(response);
+            alert('Todo chido carnal')
+        }).catch(err => {
+            console.log(err);
+            alert('Todo mal :(')
         })
-        alert('Todo chido carnal')
+        
+        
     }
 
     render(){
