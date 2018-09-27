@@ -41,9 +41,8 @@ class Login extends Component {
                 password:this.state.password
             }
         }).then(response => {
-            console.log(response.data.login.token)
             localStorage.setItem('token',response.data.login.token)
-            alert('Ya te logeaste carnal')
+            this.props.history.push('/')
         }).catch(err => {
             console.log(err)
             alert('Te equivocaste de contraseña')
