@@ -13,13 +13,20 @@ const QUERY_ME = gql `
     }
 `
 
+const QUERY_MOVIES = gql`
+    query movies{
+        movies{
+        id
+        title
+        poster
+        }
+    }
+`
+
 class Home extends Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            nombre:"Juanito Perez"
-        }
     }
 
     getMe = () => (
@@ -32,12 +39,25 @@ class Home extends Component{
         </Query>
     )
 
+    renderMovies = () => (
+        <Query query={QUERY_MOVIES}>
+            {
+                ({loading,err,data}) => {
+                    if (loading) return 'Cargando tus peliculas...'
+                    if (err) return 'Error del servicio' 
+                    return data.movies.map(movie => <Movie title={movie.title} poster={movie.poster} id={movie.id}/>)
+                }
+            }
+        </Query>
+    )
+
     render(){
         return (
             <div className="cover">
                 {this.getMe()}
-                <h1>El home</h1>
-                <Movie/>
+                <div className="row container-fluid">
+                    {this.renderMovies()}
+                </div>
             </div>
         )
     }

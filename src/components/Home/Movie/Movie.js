@@ -1,14 +1,16 @@
 import React, {Component} from 'react'
 import './movie.css'
+import {Link} from 'react-router-dom'
+
 class Movie extends Component{
     render(){
         return (
-            <div className="col-md">
+            <div className="col-md d-flex align-items-stretch mt-5">
                 <div className="card Movie__card">
-                    <img className="card-img-top" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Robo2poster.png/220px-Robo2poster.png" alt="Card image cap"/>
+                    <img className="card-img-top" src={this.props.poster} alt="Card image cap"/>
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <a className="btn btn-primary">Ver</a>
+                        <h5 className="card-title">{this.props.title}</h5>
+                        <Link to={`/movie/${this.props.id}`}>VER</Link>
                     </div>
                 </div>
             </div>
